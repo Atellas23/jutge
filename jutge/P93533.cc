@@ -9,7 +9,7 @@ int d(int a) {
 
 int mod(int a, int b) {
     int m = a%b;
-    if (m<0) return m+2;
+    if (m < 0) return m+2;
     return m;
 }
 
