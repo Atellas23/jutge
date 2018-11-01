@@ -2,18 +2,22 @@
 #include <string>
 using namespace std;
 
-int main () {
-    string seg,max,tempString = "",first;
-    cin >> first;
-    max = first;
+string minimum(string a, string b) {
+	if (b < a) return b;
+	return a;
+}
+
+int main() {
+    string seg,max="",max2;
+	cin >> max2;
     while (cin >> seg) {
-        if (seg > max) {
+        if (seg > max and seg != max2) {
             max = seg;
         }
-        else if (seg >= tempString and seg < max) {
-            tempString = seg;
-        }
+		else if (seg > max2 and seg < max) {
+			max2 = seg;
+		}
     }
-    if (tempString != "") cout << tempString << endl;
-    else cout << first << endl;
+    if (max2 != "") cout << minimum(max2,max) << endl;
+	else cout << max << endl;
 }
