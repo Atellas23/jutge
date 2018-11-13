@@ -16,24 +16,19 @@ int gcd(int a, int b) {
 }
 
 bool read_rational(int& num, int& den) {
-	num = 0;
+    cin >> num;
 	char a;
-	while (cin >> a and a != '/') {
-		if (a < '0' or a > '9') return false;
-		num *= 10;
-		num += a - '0';
-	}
+    cin >> a;
+	if (a != '/') return false;
 	cin >> den;
 	if (den == 0) return false;
 	int y = gcd(num,den);
 	num /= y;
 	den /= y;
-	return true;
+    return true;
 }
 
 int main() {
 	int num,den;
-	while (read_rational(num,den)) {
-		cout << num << ' ' << den << endl;
-	}
+	while (read_rational(num,den)) cout << num << ' ' << den << endl;
 }

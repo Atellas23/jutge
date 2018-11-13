@@ -1,16 +1,27 @@
 #include <iostream>
 using namespace std;
 
-//EN PROCÉS
+//max des del final = total - (min des del principi).
 
 int main() {
 	int n,x;
 	while (cin >> n) {
-		int sdmax = 0,parciald = 0,parciale = 0,semax = 0;
-		for (int i = 0; i < n; ++i) {
-			cin >> x;
-			parciald += x;
-			if (parciald > sdmax) sdmax = parciald;
-		}
+        if (n == 0) {
+            cout << 0 << ' ' << 0 << endl;
+        }
+        else {
+            int total = 0,m=0,M=0;
+            cin >> x;
+            total += x;
+            if (total > M) M = total;
+            else if (total < m) m = total;
+            for (int i = 1; i < n; ++i) {
+                cin >> x;
+                total += x;
+                if (total > M) M = total;
+                else if (total < m) m = total;
+            }
+            cout << M << ' ' << total-m << endl;
+        }
 	}
 }

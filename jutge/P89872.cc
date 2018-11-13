@@ -8,16 +8,13 @@ string minimum(string a, string b) {
 }
 
 int main() {
-    string seg,max="",max2;
-	cin >> max2;
-    while (cin >> seg) {
-        if (seg > max and seg != max2) {
+	string seg,max="",max2="";
+    while (cin >> seg){
+        if (seg < max and seg > max2) max2 = seg;
+        else if (seg > max) {
+            max2 = max;
             max = seg;
         }
-		else if (seg > max2 and seg < max) {
-			max2 = seg;
-		}
     }
-    if (max2 != "") cout << minimum(max2,max) << endl;
-	else cout << max << endl;
+    cout << max2 << endl;
 }
