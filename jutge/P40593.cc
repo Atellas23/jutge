@@ -2,14 +2,14 @@
 #include <math.h>
 using namespace std;
 
-long int tri(long int n) {
+int tri(int n) {
     return (n*(n+1))/2;
 }
 
-long int mintri(int n) {
-    long int r = int((sqrt(1+8*n)-1)/2);
-    long int a = tri(r);
-    else if (a >= n) return a;
+int mintri(int n) {
+    int r = int((sqrt(1+8*n)-1)/2);
+    int a = tri(r);
+    if (a >= n) return a;
     else return tri(r+1);
 }
 
