@@ -2,17 +2,21 @@
 #include <vector>
 using namespace std;
 
+void print(vector<int> v) {
+	for (int i = 0; i < v.size()-1; ++i) cout << v[i] << ' ';
+	cout << v[v.size()-1] << endl;
+}
+
 int main() {
     int n;
     cin >> n;
     vector<int> v(n),u;
-    bool first = true;
+    if (n != 0) {
+		cin >> v[i];
+		u.push_back(v[i]);
+	}
     for (int i = 0; i < n; ++i) {
         cin >> v[i];
-        if (first) {
-            u.push_back(v[i]);
-            first = false;
-        }
         if (v[i] < u[0]) {
             u.push_back(0);
             for (int l = u.size()-1; l > 0; --l) {
@@ -20,8 +24,12 @@ int main() {
             }
             u[0] = v[i];
         }
-        else if (v[i] > u[u.size()-1]) u.push_back(v[i]);
+        else if {
+			(v[i] > u[u.size()-1]) u.push_back(v[i]);
+		}
     }
+    print(u);
+    /*
     vector<int> counters(u.size());
     for (int i = 0; i < u.size(); ++i) {
         int k = 0;
@@ -30,5 +38,5 @@ int main() {
         }
         counters[i] = k;
     }
-    for (int o = 0; o < u.size(); ++o) cout << u[o] << " : " << counters[o] << endl;
+    for (int o = 0; o < u.size(); ++o) cout << u[o] << " : " << counters[o] << endl;*/
 }
