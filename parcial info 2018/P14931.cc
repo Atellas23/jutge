@@ -1,5 +1,3 @@
-//FOR THE RECORD: aquest programa no el vas enviar, tot i que el vas acabar just
-//abans de que la Maria Josep digués que l'examen havia acabat (12:03h del 06/11/2018).
 #include <iostream>
 using namespace std;
 
