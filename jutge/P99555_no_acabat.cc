@@ -5,38 +5,24 @@ using namespace std;
 typedef vector<int> row;
 typedef vector<row> mx;
 
-bool repeated(mx& m) {
-	row nums;
-	for (int i = 0; i < m.size(); ++i) {
-		for (int j = 0; j < m.size(); ++j) nums.push_back(m[i][j]);
-	}
-	for (int k = 0; k < nums.size(); ++k) {
-		for (int u = k+1; u < nums.size(); ++u) {
-			if (nums[k] == nums[u]) return true;
-		}
-	}
-	return false;
+void sums(const mx& m,row& inputrow,row& inputcol,int& diag,int& antidiag) {
+    for (int i = 0; i < m.size(); ++i) {
+        for (int j = 0; j < m.size(); ++j) {
+            if (i == j) diag += m[i][j];
+            if (i+j == m.size()) antidiag += m[i][j];
+            inputrow[i] += m[i][j];
+            inputcol[j] += m[i][j];
+        }
+    }
 }
 
-bool sums(mx& m) {
-	int save = 0;
-	for (int i = 0; i < m.size(); ++i) save += m[i][i];
-	//suma de les files
-	for (int i = 0; i < m.size(); ++i) {
-		int rowSum = 0;
-		for (int j = 0; j < m.size(); j++) rowSum += m[i][j]; 
-		if (rowSum != save) return false;
+bool repeated(mx& m) {
+	int s = 0;
+    int n = m.size();
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < n; ++j) s += m[i][j];
 	}
-	//suma de les columnes
-	for (int i = 0; i < m.size(); ++i) {
-		int colSum = 0;
-		for (int j = 0; j < m.size(); ++j) colSum += m[i][j];
-		if (colSum != save) return false;
-	}
-	int antidiag_sum = 0;
-	for (int i = 0; i < m.size(); ++i) antidiag_sum += m[i][m.size()-1-i];
-	if (antidiag_sum != save) return false;
-	return true;
+    return s == (n*n*(n*n+1))/2;
 }
 
 void llegir_matriu(mx& m) {
@@ -47,7 +33,20 @@ void llegir_matriu(mx& m) {
 
 bool is_magic_square(mx& m) {
 	if (repeated(m)) return false;
-	else return sums(m);
+	else {
+        row inputrow(m.size(),0);
+        row inputcol(m.size(),0);
+        int antidiag = 0;
+        int diag = 0;
+        sums(m,inputrow,inputcol,diag,antidiag);
+        for (int i = 1; i < inputrow.size(); ++i) {
+            if (inputrow[i] != inputrow[i-1] or inputrow[i-1] != diag or inputrow[i-1] != antidiag) return false;
+        }
+        for (int j = 1; j < inputcol.size(); ++j) {
+            if (inputcol[j] != inputcol[j-1] or inputcol[j-1] != diag or inputcol[j-1] != antidiag) return false;
+        }
+        return true;
+    }
 }
 
 int main() {
@@ -59,3 +58,4 @@ int main() {
 		else cout << "no" << endl;
 	}
 }
+
