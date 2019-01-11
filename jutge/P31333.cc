@@ -15,8 +15,8 @@ bool has_consecutive_digits(int n) {
 }
 
 bool es_bufo(int n) {
-	if (n%10 == (n/10)%10) return true;
-	else return (not has_consecutive_digits(digprod(n)) and es_bufo(digprod(n)));
+	if (n/10 == 0) return true;
+	return (not has_consecutive_digits(n) and es_bufo(digprod(n)));
 }
 
 int main() {
