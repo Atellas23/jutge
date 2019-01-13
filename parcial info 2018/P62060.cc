@@ -9,10 +9,9 @@ int main() {
             ++k;
             if (k > max) max = k;
         }
-        else {
-            k = 1;
-        }
+        else k = 1;
         n = m;
     }
     cout << max << endl;
 }
+

@@ -46,17 +46,24 @@ void mergesort(vector<int>&v) {
 
 int main() {
 	int n,m;
-	while(cin >> m) {
+	while (cin >> m) {
 		vector<int> numbers;
 		numbers.push_back(m);
 		while(cin >> n and n != 0) numbers.push_back(n);
 		mergesort(numbers);
 		for (int i = 0; i < numbers.size(); ++i) {
-			if (numbers[i]%2==0) cout << numbers[i] << ' ';
+			if (numbers[i]%2 == 0) cout << numbers[i] << ' ';
 		}
 		cout << endl;
+		bool first = true;
 		for (int j = numbers.size()-1; j > -1; --j) {
-			if (numbers[j]%2==1) cout << numbers[j] << ' ';
+			if (numbers[j]%2 == 1) {
+				if (first) {
+					cout << numbers[j];
+					first = false;
+				}
+				else cout << ' ' << numbers[j];
+			}
 		}
 		cout << endl;
 	}
