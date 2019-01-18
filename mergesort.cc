@@ -42,5 +42,10 @@ void merge_sort(vector<int>&v, int left, int right) {
 }
 
 int main() {
-	//merge sort
+	int m;
+	vector<int> v;
+	while (cin >> m) v.push_back(m);
+	merge_sort(v,0,v.size()-1);
+	for (int i = 0; i < v.size()-1; ++i) cout << v[i] << ' ';
+	cout << v[v.size()-1] << endl;
 }
