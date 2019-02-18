@@ -1,33 +1,51 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+using vc = vector<char>;
+using vvc = vector<vc>;
 using vi = vector<int>;
+using vvi = vector<vi>;
 
-vi count(vi& m) {
-    int n = m.size();
-    vi s(n+1);
-    s[0] = 0;
-    s[1] = m[0];
-    for (int i = 2; i < n+1; ++i) s[i] = s[i-1] + m[i];
-    return s;
+const int inf = 1e8;
+int a,b;
+
+vvi costs;
+vvc map;
+
+void rec() {
+    int max_row = map.size()-2;
+    int max_col = map[0].size()-1;
+    for (int i = max_row; i > -1; --i) {
+        for (int j = 0; j < max_col; ++j) {
+            costs[i][j] += ;
+        }
+    }
+}
+
+void aux() {
+    int i = map.size()-1;
+    int j = map[0].size()-1;
+    for (int k = i; k > -1; --k) {
+        for (int l = 0; l < j; ++l) {
+            if (map[k][l] == 'T') costs[k][l] += 3;
+            else if (map[k][l] == '*') costs[k][l] += inf;
+        }
+    }
+    rec();
 }
 
 int main() {
-    int n,k=0;
-    while (cin >> n) {
-        ++k;
-        vi m(n);
-        for (int i = 0; i < n; ++i) cin >> m[i];
-        vi sums = count(m);
-        int q;
-        cin >> q;
-        int f,h;
-        cout << '#' << k << endl;
-        for (int j = 0; j < q; ++j) {
-            cin >> f >> h;
-            if (f == h) cout << m[h-1] << endl;
-            else if (h < f) cout << sums[f-1]-sums[h-2] << endl;
-            else cout << sums[h-1]-sums[f-2] << endl;
+    int n,m;
+    cin >> n >> m;
+    map = vvc(n,vc(m));
+    costs = vvi(n,vi(m,0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cin >> map[i][j];
+            if (map[i][j] == 'M') {
+                a = i;
+                b = j;
+            }
         }
     }
 }
